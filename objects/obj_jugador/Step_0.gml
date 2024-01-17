@@ -16,11 +16,16 @@ if estado == estados.normal{
 		sprite_index = spr_mario;	
 	}
 	
-	var enemigoDesdeLaIzquierda = collision_rectangle(x - 8, y - 6, x - 10, y + 6, obj_enemigo, false, true);
-	var enemigoDesdeLaDerecha = collision_rectangle(x + 8, y - 6, x + 10, y + 6, obj_enemigo, false, true);
-	if enemigoDesdeLaIzquierda || enemigoDesdeLaDerecha{
-		estado = estados.muerto;
+	var enemigoDesdeLaIzquierda = collision_point(x - 4, y, obj_enemigo, false, true);
+	var enemigoDesdeLaDerecha = collision_point(x + 4, y, obj_enemigo, false, true);
+	var enemigoResultante = noone;
+	if (enemigoDesdeLaIzquierda) {
+	    enemigoResultante = enemigoDesdeLaIzquierda;
+	} else if (enemigoDesdeLaDerecha) {
+	    enemigoResultante = enemigoDesdeLaDerecha;
 	}
+	if (enemigoResultante && !enemigoResultante.aplastado && !enemigoResultante.pateado)
+		estado = estados.muerto;
 }
 if (keyboard_check_pressed(reset_key))
 	game_restart();
