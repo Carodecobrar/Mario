@@ -41,6 +41,7 @@ if nombre == nombresDeLosEnemigos.tortuga && aplastado{
 	if (pateado && jugadorDesdeArriba && (sign(jugadorDesdeArriba.vsp) == 1)){
 		hsp = 0;
 		pateado = false;
+		contador = contadorAplastado;
 		//Comunicarse con mario para que salte
 		with(jugadorDesdeArriba){
 			vsp = vel_salto/2;
